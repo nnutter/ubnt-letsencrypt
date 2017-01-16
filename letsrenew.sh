@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -o errexit
+
 # Opening up firewall on port 80
 CHAIN=$( iptables -L | awk '/^Chain WAN/ && /LOCAL/ {print $2;}' )
 iptables -I $CHAIN 1 -p tcp --dport 80 -j ACCEPT
